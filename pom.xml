@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>in.niraj</groupId>
+    <artifactId>maven-versioning</artifactId>
+    <version>${buildNumber}</version>
+    <name>Maven-Versioning-Demo - ${project.artifactId}</name>
+
+    <properties>
+        <project.build.sourceencoding>UTF-8</project.build.sourceencoding>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
+    </properties>
+
+    <scm>
+        <connection>scm:svn:http://none</connection>
+        <developerConnection>scm:svn:https://none</developerConnection>
+        <url>scm:svn:https://none</url>
+    </scm>
+
+    <build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+    <plugins>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>buildnumber-maven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+                <execution>
+                    <phase>generate-resources</phase>
+                    <goals>
+                        <goal>create</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <doCheck>false</doCheck>
+                <doUpdate>false</doUpdate>
+                <revisionOnScmFailure>true</revisionOnScmFailure>
+                <format>{0}-{1,date,yyyy-MM-dd}</format>
+                <items>
+                    <item>buildNumber\d*</item>
+                    <item>timestamp</item>
+                </items>
+            </configuration>
+        </plugin>
+    </plugins>
+        <finalName>version-demo-${buildNumber}</finalName>
+    </build>
+</project>

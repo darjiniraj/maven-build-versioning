@@ -1,0 +1,4 @@
+project.version=${project.version}
+build.number=${buildNumber}
+build.date=${timestamp}
+application.name=${pom.name}
